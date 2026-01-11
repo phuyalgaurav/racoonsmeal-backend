@@ -1,0 +1,3 @@
+[submodule "racoonsmeal-frontend"]
+	path = racoonsmeal-frontend
+	url = https://github.com/phuyalgaurav/racoonsmeal-frontend.git
