@@ -14,3 +14,6 @@ racoonsmeal-backend/.env
 
 # Skip the frontend beacause it will be a submodule
 racoonsmeal-frontend/
+
+#Skip django media files
+racoonsmeal-backend/media/

@@ -10,5 +10,3 @@ services:
     env_file:
       - .env
     entrypoint: ["/app/entrypoint.sh"]
-    depends_on:
-      - db

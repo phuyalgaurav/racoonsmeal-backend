@@ -9,9 +9,6 @@ environ.Env.read_env(BASE_DIR / ".env")
 SECRET_KEY = env("SECRET_KEY", default="unsafe-dev-key")
 DEBUG = env.bool("DEBUG", default=False)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
-DATABASES = {
-    "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR/'db.sqlite3'}")
-}
 
 # Application definition
 INSTALLED_APPS = [
@@ -142,22 +139,3 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
-
-# TODO: Remove this in production
-CORS_ALLOW_ALL_ORIGINS = True
-
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "bucket_name": env("STORAGE_BUCKET_NAME"),
-            "access_key": env("STORAGE_ACCESS_KEY_ID"),
-            "secret_key": env("STORAGE_ACCESS_KEY"),
-            "endpoint_url": env("STORAGE_ENDPOINT_URL"),
-            "region_name": "auto",
-        },
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}

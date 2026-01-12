@@ -18,7 +18,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(
-        upload_to="profile_pics/", blank=True, null=True
+        upload_to="media/profile_pics/", blank=True, null=True
     )
     height_cm = models.FloatField(blank=True, null=True)
     weight_kg = models.FloatField(blank=True, null=True)
