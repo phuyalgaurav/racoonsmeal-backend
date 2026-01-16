@@ -16,7 +16,7 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    bio = models.TextField(blank=False, null=False)
+    bio = models.TextField(default="Newbiew here", blank=False)
     age = models.IntegerField(blank=False, null=False)
     gender = models.CharField(
         max_length=10,
