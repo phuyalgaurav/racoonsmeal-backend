@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Meal, Nutrient, MealPlan, BaseNutrient, UserNutrientRequirement
+from .models import (
+    Meal,
+    Nutrient,
+    MealPlan,
+    BaseNutrient,
+    UserNutrientRequirement,
+    UserRequirementStat,
+)
 
 
 @admin.register(BaseNutrient)
@@ -33,3 +40,10 @@ class UserNutrientRequirementAdmin(admin.ModelAdmin):
     list_display = ("user", "base_nutrient", "daily_target", "source")
     list_filter = ("source", "user")
     search_fields = ("user__username", "base_nutrient__name")
+
+
+@admin.register(UserRequirementStat)
+class UserRequirementStatAdmin(admin.ModelAdmin):
+    list_display = ("user",)
+    search_fields = ("user__username",)
+    list_filter = ("user",)

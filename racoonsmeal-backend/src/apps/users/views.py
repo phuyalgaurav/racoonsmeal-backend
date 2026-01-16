@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, generics, permissions, status
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 from .models import User, UserProfile
 from .serializers import (
     RegisterSerializer,
@@ -48,3 +50,13 @@ class UserProfileView(
 
     def perform_update(self, serializer):
         serializer.save() if serializer.is_valid() else None
+
+
+@api_view(["GET"])
+def is_user_profile_created(request, username):
+    """
+    Check if a UserProfile exists for the given username.
+    """
+    user = get_object_or_404(User, username=username)
+    exists = UserProfile.objects.filter(user=user).exists()
+    return Response({"profile_exists": exists}, status=status.HTTP_200_OK)

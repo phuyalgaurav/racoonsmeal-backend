@@ -95,12 +95,16 @@ class UserProfileNestedSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = (
+            "user",
             "id",
             "bio",
+            "age",
+            "gender",
             "height_cm",
             "weight_kg",
+            "activity_level",
+            "goal",
             "profile_picture",
-            "user",
             "followers",
         )
         read_only_fields = ("id", "user", "followers")

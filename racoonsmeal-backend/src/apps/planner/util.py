@@ -66,19 +66,16 @@ def compute_nutrition_for_user(user: dict) -> dict:
     fat_g, fat_kcal, carbs_g, carbs_kcal, used_fat_factor = fat_carb_correction()
 
     # Return enriched row (keep inputs + add outputs)
-    out = dict(user)
-    out.update(
-        {
-            "bmr": round(bmr, 2),
-            "tdee": round(tdee, 2),
-            "calories_needed": round(calories_needed, 2),
-            "protein_g": round(protein_g, 2),
-            "protein_kcal": round(protein_kcal, 2),
-            "fat_g": round(fat_g, 2),
-            "fat_kcal": round(fat_kcal, 2),
-            "carbs_g": round(carbs_g, 2),
-            "carbs_kcal": round(carbs_kcal, 2),
-            "fat_factor_used": used_fat_factor,
-        }
-    )
+    out = {
+        "bmr": round(bmr, 2),
+        "tdee": round(tdee, 2),
+        "calories_needed": round(calories_needed, 2),
+        "protein_g": round(protein_g, 2),
+        "protein_kcal": round(protein_kcal, 2),
+        "fat_g": round(fat_g, 2),
+        "fat_kcal": round(fat_kcal, 2),
+        "carbs_g": round(carbs_g, 2),
+        "carbs_kcal": round(carbs_kcal, 2),
+        "fat_factor_used": used_fat_factor,
+    }
     return out

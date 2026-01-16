@@ -16,24 +16,42 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    bio = models.TextField(blank=True)
+    bio = models.TextField(blank=False, null=False)
+    age = models.IntegerField(blank=False, null=False)
+    gender = models.CharField(
+        max_length=10,
+        choices=[("male", "Male"), ("female", "Female")],
+        blank=False,
+        null=False,
+    )
     profile_picture = models.ImageField(
         upload_to="media/profile_pics/", blank=True, null=True
     )
-    height_cm = models.FloatField(blank=True, null=True)
-    weight_kg = models.FloatField(blank=True, null=True)
+    height_cm = models.FloatField(blank=False, null=False)
+    weight_kg = models.FloatField(blank=False, null=False)
     activity_level = models.CharField(
         max_length=50,
         choices=[
             ("sedentary", "Sedentary"),
-            ("lightly_active", "Lightly Active"),
-            ("moderately_active", "Moderately Active"),
+            ("light", "Light"),
+            ("moderate", "Moderate"),
+            ("active", "Active"),
             ("very_active", "Very Active"),
         ],
-        blank=True,
-        null=True,
+        null=False,
+        default="lightly",
     )
     followers = models.ManyToManyField(User, related_name="following", blank=True)
+    goal = models.CharField(
+        max_length=50,
+        choices=[
+            ("cut", "Cut"),
+            ("maintain", "Maintain"),
+            ("gain", "Gain"),
+        ],
+        null=False,
+        default="maintain",
+    )
 
     class Meta:
         verbose_name = "User Profile"

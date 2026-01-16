@@ -121,3 +121,23 @@ class UserNutrientRequirement(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.base_nutrient.name}: {self.daily_target}{self.base_nutrient.unit} ({self.source})"
+
+
+class UserRequirementStat(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="physical_stats",
+    )
+    bmr = models.FloatField(help_text="Basal Metabolic Rate in kcal.")
+    tdee = models.FloatField(help_text="Total Daily Energy Expenditure in kcal.")
+    calories_needed = models.FloatField(help_text="Calories needed per day in kcal.")
+    protein_g = models.FloatField(help_text="Daily protein requirement in grams.")
+    protein_kcal = models.FloatField(help_text="Daily protein requirement in kcal.")
+    fat_g = models.FloatField(help_text="Daily fat requirement in grams.")
+    fat_kcal = models.FloatField(help_text="Daily fat requirement in kcal.")
+    carbs_g = models.FloatField(help_text="Daily carbohydrate requirement in grams.")
+    carbs_kcal = models.FloatField(help_text="Daily carbohydrate requirement in kcal.")
+    fat_factor_used = models.FloatField(
+        help_text="Fat factor used in calculations (e.g. 0.8 for 80%)."
+    )
